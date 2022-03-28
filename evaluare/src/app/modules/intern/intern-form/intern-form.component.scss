@@ -1,7 +1,12 @@
-form {
-  width: 15%;
+.card-container {
+  width: max-content;
+  margin: 0 auto;
 
-  mat-form-field {
+  form {
     width: 100%;
+
+    mat-form-field {
+      width: 100%;
+    }
   }
 }

@@ -1,5 +1,7 @@
 <div class="intern-table-container">
-  <div style="display: flex; align-items: center; justify-content: space-evenly;">
+  <div
+    style="display: flex; align-items: center; justify-content: space-evenly"
+  >
     <button
       mat-raised-button
       color="primary"
@@ -10,17 +12,19 @@
     </button>
 
     <form style="width: fit-content">
-      <mat-form-field appearance="fill">
-        <mat-label>Date format</mat-label>
-        <mat-select matNativeControl [(value)]="selectedFormat">
-          <mat-option
-            *ngFor="let format of dropdownOptions"
-            [value]="format.value"
-          >
-            {{ format.name }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Date format</mat-label>
+          <mat-select matNativeControl [(value)]="selectedFormat">
+            <mat-option
+              *ngFor="let format of dropdownOptions"
+              [value]="format.value"
+            >
+              {{ format.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
     </form>
   </div>
   <table mat-table [dataSource]="_interns" class="mat-elevation-z8">

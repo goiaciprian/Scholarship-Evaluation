@@ -34,11 +34,11 @@ export class InternFormComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
-    this._internService.getInterById(this.internId).subscribe((intern) => {
-      this.intern = intern;
-      this.initInterface();
-    });
+    if (this.internId !== null)
+      this._internService.getInterById(this.internId).subscribe((intern) => {
+        this.intern = intern;
+        this.initInterface();
+      });
   }
 
   initInterface() {
@@ -79,7 +79,7 @@ export class InternFormComponent implements OnInit, OnChanges {
 
     this._internService.createIntern(newIntern).subscribe({
       next: () => {
-        this._notify.openSnackbar("Intern added.")
+        this._notify.openSnackbar('Intern added.');
       },
     });
   }
@@ -94,7 +94,7 @@ export class InternFormComponent implements OnInit, OnChanges {
 
     this._internService.updateIntern(this.internId, newIntern).subscribe({
       next: () => {
-          this._notify.openSnackbar("Intern updated.")
+        this._notify.openSnackbar('Intern updated.');
       },
     });
   }

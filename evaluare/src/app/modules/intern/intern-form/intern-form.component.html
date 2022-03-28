@@ -1,74 +1,81 @@
-<mat-card>
-  <mat-card-header> {{ titlu }} intern </mat-card-header>
-  <mat-card-content>
-    <form [formGroup]="form">
-      <div>
-        <mat-form-field appearance="fill">
-          <mat-label>First name</mat-label>
-          <input
-            matInput
-            name="firstName"
-            formControlName="firstName"
-            required
-          />
-          <mat-error *ngIf="validateField('firstName', 'required')">
-            First name is required
-          </mat-error>
-        </mat-form-field>
-      </div>
+<div class="card-container">
+  <mat-card>
+    <mat-card-header> {{ titlu }} intern </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="form">
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>First name</mat-label>
+            <input
+              matInput
+              name="firstName"
+              formControlName="firstName"
+              required
+            />
+            <mat-error *ngIf="validateField('firstName', 'required')">
+              First name is required
+            </mat-error>
+          </mat-form-field>
+        </div>
 
-      <div>
-        <mat-form-field appearance="fill">
-          <mat-label>Last name</mat-label>
-          <input matInput name="lastName" formControlName="lastName" required />
-          <mat-error *ngIf="validateField('firstName', 'required')">
-            Last name is required
-          </mat-error>
-        </mat-form-field>
-      </div>
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Last name</mat-label>
+            <input
+              matInput
+              name="lastName"
+              formControlName="lastName"
+              required
+            />
+            <mat-error *ngIf="validateField('firstName', 'required')">
+              Last name is required
+            </mat-error>
+          </mat-form-field>
+        </div>
 
-      <div>
-        <mat-form-field appearance="fill">
-          <mat-label>Email</mat-label>
-          <input matInput name="email" formControlName="email" required />
-          <mat-error *ngIf="validateField('email', 'required')">
-            Email is required
-          </mat-error>
-          <mat-error *ngIf="validateField('email', 'email')">
-            The email is not valid
-          </mat-error>
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field appearance="fill">
-          <mat-label>Birth date</mat-label>
-          <input
-            name="birthDate"
-            matInput
-            formControlName="birthDate"
-            required
-            [matDatepicker]="picker"
-          />
-          <mat-datepicker-toggle
-            matSuffix
-            [for]="picker"
-          ></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-          <mat-error *ngIf="validateField('birthDate', 'required')">
-            Birth date is required
-          </mat-error>
-        </mat-form-field>
-      </div>
-    </form>
-  </mat-card-content>
-  <mat-card-actions>
-    <button
-      mat-raised-button
-      color="primary"
-      [disabled]="!form.valid"
-      (click)="submit()"
-    >
-      {{ titlu }}
-    </button>
-  </mat-card-actions>
-</mat-card>
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput name="email" formControlName="email" required />
+            <mat-error *ngIf="validateField('email', 'required')">
+              Email is required
+            </mat-error>
+            <mat-error *ngIf="validateField('email', 'email')">
+              The email is not valid
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Birth date</mat-label>
+            <input
+              name="birthDate"
+              matInput
+              formControlName="birthDate"
+              required
+              [matDatepicker]="picker"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="validateField('birthDate', 'required')">
+              Birth date is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </form>
+    </mat-card-content>
+    <mat-card-actions style="text-align: center">
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="!form.valid"
+        (click)="submit()"
+      >
+        {{ titlu }}
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
