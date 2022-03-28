@@ -1,0 +1,83 @@
+<div class="intern-table-container">
+  <table mat-table [dataSource]="_interns" class="mat-elevation-z8">
+    <ng-container matColumnDef="firstName">
+      <th mat-header-cell *matHeaderCellDef>First Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.firstName }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef>Last Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.lastName }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>Email</th>
+      <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="birthDate">
+      <th mat-header-cell *matHeaderCellDef>Birth date</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.birthDate | date: selectedFormat }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+          "
+        >
+          <button
+            mat-raised-button
+            color="primary"
+            routerLink="/addIntern"
+            style="height: fit-content"
+          >
+            Add intern
+          </button>
+
+          <button mat-raised-button color="primary" style="height: fit-content">
+            {{ sortare }}
+          </button>
+
+          <form style="width: fit-content">
+            <mat-form-field appearance="fill">
+              <mat-label>Date format</mat-label>
+              <mat-select matNativeControl [(value)]="selectedFormat">
+                <mat-option
+                  *ngFor="let format of dropdownOptions"
+                  [value]="format.value"
+                >
+                  {{ format.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </form>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-icon-button
+          style="color: rgb(105, 105, 241)"
+          routerLink="/addIntern/{{ element.id }}"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          style="color: rgb(245, 94, 94)"
+          (click)="deleteIntern(element.id)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="_displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: _displayedColumns"></tr>
+  </table>
+</div>
