@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Intern } from '../models/intern';
 import { InternService } from '../services/intern.service';
@@ -9,7 +9,7 @@ import { NotifyService } from '../services/notify.service';
   templateUrl: './intern-table.component.html',
   styleUrls: ['./intern-table.component.scss'],
 })
-export class InternTableComponent implements OnInit {
+export class InternTableComponent implements OnInit, OnChanges {
   _interns: Intern[] = [];
   _displayedColumns: string[] = [
     'firstName',
@@ -48,6 +48,10 @@ export class InternTableComponent implements OnInit {
       .subscribe((interns) => (this._interns = interns));
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
+  }
+
   deleteIntern(id: string) {
     this._internService.deleteIntern(id).subscribe({
       next: () => {
@@ -57,6 +61,14 @@ export class InternTableComponent implements OnInit {
   }
 
   toggleSortare() {
+    console.log(this._interns);
     this.sortare = this.sortare === 'Crescator' ? 'Descrescator' : 'Crescator';
+    this._interns = [
+      ...this._interns.sort((a, b) =>
+        this.sortare === 'Crescator'
+          ? a.firstName.localeCompare(b.firstName)
+          : a.firstName.localeCompare(b.firstName) * -1
+      ),
+    ];
   }
 }
